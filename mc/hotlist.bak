@@ -1,0 +1,2 @@
+ENTRY "home" URL "/home/theodorcon"
+ENTRY "i3-config" URL "/home/theodorcon/.config/i3"

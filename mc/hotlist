@@ -1,0 +1,3 @@
+ENTRY "home" URL "/home/theodorcon"
+ENTRY "i3-config" URL "/home/theodorcon/.config/i3"
+ENTRY "polybar-config" URL "/home/theodorcon/.config/polybar"
