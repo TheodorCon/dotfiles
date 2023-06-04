@@ -16,3 +16,7 @@
 
 !polybar   
 !polybar/*
+
+!nushell
+!nushell/*
+nushell/history.txt

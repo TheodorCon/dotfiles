@@ -40,7 +40,7 @@ bindsym $sup+F9 exec --no-startup-id xrandr --output $display1 --auto --output $
 bindsym $sup+F10 exec --no-startup-id xrandr --output $display1 --off --output $display2 --auto
 bindsym $sup+F11 exec --no-startup-id xrandr --output $display1 --auto --output $display2 --auto --right-of $display1
 
-bindsym $sup+Return exec "urxvt -e mc"
+bindsym $sup+Return exec "gnome-terminal -e nu"
 
 bindcode 133 --release exec "rofi -modi drun,run -show drun"
 
@@ -91,14 +91,16 @@ bindsym $sup+shift+equal resize grow height 10 px or 10 ppt
 bindsym $sup+shift+minus resize shrink height 10 px or 10 ppt
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/pictures/$(date)"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Shift+$sup+S exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+bindsym $sup+F5 exec --no-startup-id mpv /dev/video0 --profile=low-latency --untimed
 
 gaps inner 10
 gaps horizontal 9
@@ -107,4 +109,7 @@ for_window [class="mpv"] floating enable
 for_window [class="QjackCtl"] floating enable
 
 exec --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpapers/monad-glowing-new.jpg
+exec --no-startup-id feh --bg-scale $HOME/pictures/Wallpapers/monad-glowing-new.jpg
+exec --no-startup-id dunst
+exec --no-startup-id lxpolkit
+exec --no-startup-id xcompmgr -c
