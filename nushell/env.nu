@@ -85,3 +85,36 @@ let-env NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+
+if ("/home/theodorcon/.ghcup/env" | path exists) {
+    if (not ($env.PATH | any {|| str contains "/home/theodorcon/.ghcup/bin"})) {
+        let-env PATH = ($env.PATH | split row (char esep) | prepend "/home/theodorcon/.ghcup/bin")
+    }
+
+    if (not ($env.PATH | any {|| str contains ($env.HOME + "/.ghcup/bin")})) {
+        let-env PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME + "/.ghcup/bin"))
+    }
+}
+
+let-env BUN_INSTALL = $env.HOME + "/.bun/bin"
+let-env PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME + "/.bun/bin"))
+
+def steam-run [game: string] {
+    mut gamecode = ""
+    
+    if ($game == "bg3") { 
+        $gamecode = "1086940" 
+    } else {
+        let span = (metadata $game).span
+        error make {
+            msg: "Invalid Steam game", 
+            label: {
+                text: "no mapping exists for this game title", 
+                start: $span.start, 
+                end: $span.end 
+            } 
+        }
+    }
+    
+    steam ("steam://rungameid/" + $gamecode)
+}

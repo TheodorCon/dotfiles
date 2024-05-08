@@ -31,12 +31,12 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym $sup+F9 exec --no-startup-id xrandr --output $display1 --auto --output $display2 --off
 
+bindsym $sup+F9 exec --no-startup-id xrandr --output $display1 --auto --output $display2 --off
 bindsym $sup+F10 exec --no-startup-id xrandr --output $display1 --off --output $display2 --auto
 bindsym $sup+F11 exec --no-startup-id xrandr --output $display1 --auto --output $display2 --auto --right-of $display1
 
@@ -102,8 +102,8 @@ bindsym Shift+$sup+S exec --no-startup-id maim --select | xclip -selection clipb
 
 bindsym $sup+F5 exec --no-startup-id mpv /dev/video0 --profile=low-latency --untimed
 
-gaps inner 10
-gaps horizontal 9
+# gaps inner 0
+# gaps horizontal 0
 
 for_window [class="mpv"] floating enable
 for_window [class="QjackCtl"] floating enable
@@ -113,3 +113,4 @@ exec --no-startup-id feh --bg-scale $HOME/pictures/Wallpapers/monad-glowing-new.
 exec --no-startup-id dunst
 exec --no-startup-id lxpolkit
 exec --no-startup-id xcompmgr -c
+exec --no-startup-id xrandr --output $display2 --primary --right-of $display1 

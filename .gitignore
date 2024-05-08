@@ -11,12 +11,15 @@
 !mpv
 !mpv/*
 
-!rofi   
+!rofi
 !rofi/*
 
-!polybar   
+!polybar
 !polybar/*
 
 !nushell
 !nushell/*
 nushell/history.txt
+
+!micro
+!micro/*
